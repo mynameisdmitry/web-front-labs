@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+ <html>
+     <link rel="stylesheet" href="../main.CSS">
+     <link rel="icon" href="../favicon.ico">
+     <link rel="icon" href="../favicon-16x16.png">
+     <link rel="icon" href="../favicon-32x32.png">
+     <link rel="icon" href="favicon.ico" type="image/x-icon">
+     <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
+     <link rel="icon" href="favicon-32x32.png" type="image/x-icon">
+     <style>
+         div.text5 div {
+             display: none;
+         }
+         div.text1 div {
+             display: none;
+         }
+         div.text2 div {
+             display: none;
+         }
+         div.text3 div {
+             display: none;
+         }
+         div.text4 div {
+             display: none;
+         }
+ 
+         h1:hover + div {
+             display: block;
+         }
+         .text5 {
+             width: 300px;
+             border: 3px groove;
+             display: inline-block;
+             vertical-align: top;
+             padding: 15px;
+             margin: 15px;
+             background-color: #d8d0d8;
+             box-shadow: 5px 5px 10px rgb(255, 0, 0);
+             color: rgb(255, 0, 0);
+             border-radius: 10px;
+             transition: 2s;
+             font-family: 'Times New Roman', Times, serif;
+         }
+         .text5:hover {
+             cursor: pointer;
+             text-decoration: double; 
+             box-shadow: 5px 5px 10px rgb(0, 0, 0); 
+             font-family: Arial, Helvetica, sans-serif; 
+             font-weight: bold; 
+             color: rgb(22, 0, 187);
+             background-color: rgb(97, 249, 249);
+             transition: 3s;
+             width: 400px;
+             border: 10px solid rgb(215, 252, 0);
+             vertical-align: top;
+             padding: 25px;
+             margin: 20px;
+             border-radius: 10px;
+             text-indent: 15px;
+             text-align: justify;
+             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+             font-size: 15px;
+         }
+         .text1 {
+             width: 300px;
+             border: 5px double;
+             display: inline-block;
+             vertical-align: top;
+             padding: 15px;
+             margin: 15px;
+             background-color: #d8ef44;
+             box-shadow: 3px 3px 3px rgb(0, 0, 0); 
+             border-radius: 7px;
+             transition: 2s;
+             color: rgb(23, 102, 5);
+         }
+         .text1:hover {
+             cursor: pointer;
+             text-decoration: solid; 
+             box-shadow: 5px 5px 10px rgb(195, 170, 170); 
+             font-family: Arial, Helvetica, sans-serif; 
+             font-weight: bold; 
+             color: black;
+             background-color: rgb(206, 213, 213);
+             transition: 3s;
+             width: 500px;
+             border: 10px solid;
+             vertical-align: top;
+             padding: 25px;
+             margin: 20px;
+             border-radius: 5px;
+             text-indent: 15px;
+             text-align: justify;
+             font-size: 20px;
+         }
+         .text2 {
+             width: 300px;
+             border: 5px solid rgb(57, 124, 238);
+             display: inline-block;
+             vertical-align: top;
+             padding: 15px;
+             margin: 15px;
+             background-color: #3a2cfa;
+             color: rgb(209, 201, 192);
+             box-shadow: 7px 7px 7px rgb(35, 12, 146); 
+             border-radius: 7px;
+             transition: 2s;
+         }
+         .text2:hover {
+             cursor: pointer;
+             text-decoration: underline; 
+             box-shadow: 5px 5px 10px rgb(232, 84, 5); 
+             font-family: Arial, Helvetica, sans-serif; 
+             font-weight: normal; 
+             color: rgb(8, 6, 74);
+             background-color: rgb(241, 169, 76);
+             transition: 3s;
+             width: 380px;
+             border: 10px inset;
+             vertical-align: top;
+             padding: 25px;
+             margin: 20px;
+             border-radius: 10px;
+             text-indent: 30px;
+             text-align: justify;
+             font-size: 23px;
+         }
+         .text3 {
+             width: 300px;
+             border: 5px outset rgb(0, 0, 0);
+             display: inline-block;
+             vertical-align: top;
+             padding: 15px;
+             margin: 15px;
+             background-color: #ffffff;
+             color: rgb(255, 0, 0);
+             box-shadow: 7px 7px 7px rgb(66, 44, 2); 
+             border-radius: 7px;
+             transition: 2s;
+         }
+         .text3:hover {
+             cursor: pointer;
+             text-decoration: overline; 
+             box-shadow: 10px 10px 10px rgb(214, 183, 165); 
+             font-family: cursive;
+             font-weight: lighter; 
+             color: rgb(110, 48, 12);
+             background-color: rgb(162, 106, 82);
+             transition: 3s;
+             width: 600px;
+             border: 10px dashed;
+             vertical-align: top;
+             padding: 25px;
+             margin: 20px;
+             border-radius: 20px;
+             text-indent: 20px;
+             text-align: justify;
+             font-size: 23px;
+             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+         }
+         .text4 {
+             width: 300px;
+             border: 8px ridge rgb(0, 0, 0);
+             display: inline-block;
+             vertical-align: top;
+             padding: 15px;
+             margin: 15px;
+             background-color: #0d0e46;
+             color: rgb(202, 202, 13);
+             box-shadow: 7px 7px 7px rgb(232, 236, 98); 
+             border-radius: 13px;
+             transition: 2s;
+         }
+         .text4:hover {
+             cursor: pointer;
+             text-decoration: double; 
+             box-shadow: 10px 15px 18px rgb(95, 184, 93); 
+             font-family: cursive;
+             font-weight: lighter; 
+             color: rgb(6, 13, 74);
+             background-color: rgb(225, 30, 108);
+             transition: 3s;
+             width: 330px;
+             border: 10px ridge;
+             vertical-align: top;
+             padding: 25px;
+             margin: 20px;
+             border-radius: 8px;
+             text-indent: 10px;
+             text-align: justify;
+             font-size: 19px;
+             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+         }
+     </style>
+ </html>
+ <body>
+     <header>
+         НГТУ, ФБ, Лабораторная работа 3
+         <hr>
+     </header>
+    
+     <main>
+         <div class="text5">
+             <h1>Что такое рэп-музыка?</h1>
+             <div>
+                Слово "рэп" образовано от аббревиатуры, означающей ритм и поэзию. Рэп-музыка может 
+                описывать множество поджанров, в которых используется рэп-вокал. По сути, рэп - это искусство сочетания ритмичной 
+                речи и ударов для создания музыки. В фонограммах рэп-музыки часто используются оцифрованные сэмплы и биты.
+             </div>
+         </div>
+       
+         <div class="text1">
+             <h1>История рэп-музыки</h1>
+             <div>
+                Рэп-музыка чаще всего ассоциируется с хип-хопом, более широким культурным движением и музыкальным жанром, 
+                зародившимся в Нью-Йорке в 1970-х годах. Культура хип-хопа дала дорогу таким культурным основам, как граффити, диджеинг, MCing (что привело к рэпу) и 
+                брейк-данс. Этот жанр возник на блочных вечеринках, где диджеи ставили сэмплы фанка, соула, диско и других пластинок.
+             </div>
+         </div>
+ 
+         <div class="text2">
+             <h1>Рэп и хип-хоп и трэп: в чем разница?</h1>
+             <div>
+                Рэп - это технически один из видов вокала. С музыкой хип-хоп связано зарождение рэп-вокала в массовом масштабе. 
+                Trap-музыка - это поджанр хип-хоп музыки, зародившийся на юге США. Этот жанр известен использованием тяжелых ударов 808, 
+                хай-хэтов и продолжает развиваться и по сей день, превращаясь в новые итерации, такие как эмо-рэп.
+             </div>
+         </div>
+ 
+         <div class="text3">
+             <h1>Старая школа хип-хопа</h1>
+             <div>
+                 <i>Естественно начать с олдскульного хип-хопа. Под ним подразумевается музыка, созданная в основном в первые годы существования 
+                    хип-хопа, или музыка, придерживающаяся ярко выраженного стиля рэпа на сэмплированных записях.</i>
+             </div>
+         </div>
+ 
+         <div class="text4">
+             <h1>Гангста-рэп</h1>
+             <div>
+                Гангста-рэп, который первоначально назывался реалити-рэпом, использовался для передачи культуры американских банд. 
+                К оригинальным исполнителям гангста-рэпа относятся N.W.A, Тупак и 50 Cent. Этот жанр и по сей день 
+                упоминается в современном пространстве, например, в песне Gangsta Luv Снуп Догга.
+             </div>
+         </div>
+     </main>
+ 
+     <footer>
+         <hr>
+         &copy; Дима Игуменшев, ФБИ-33, 2 курс, 2025
+     </footer>
+ </body>
