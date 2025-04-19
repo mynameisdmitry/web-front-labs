@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+ <html>
+     <head>
+         <meta charset="UTF-8">
+         <title>Игуменшев Дмитрий Евгеньевич. Оформление текста</title>
+         <link rel="stylesheet" href="../main.CSS">
+         <link rel="icon" href="../favicon.ico">
+         <link rel="icon" href="../favicon-16x16.png">
+         <link rel="icon" href="../favicon-32x32.png">
+         <link rel="icon" href="favicon.ico" type="image/x-icon">
+         <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
+         <link rel="icon" href="favicon-32x32.png" type="image/x-icon">
+         <style>
+             .citations{
+                 border: 1px solid red;
+                 padding: 20px;
+                 border-radius: 10px;
+                 margin: 20px;
+                 box-shadow: 10px 10px 5px #002;
+                 background: linear-gradient(to right, red, orange, yellow, green, lightblue, blue, purple );
+             }
+             .text{
+                 font-size: 30px;
+                 font-weight: bold;
+                 font-family: 'Times New Roman', Times, serif;
+                 text-align: center;
+             }
+             .author{
+                 text-align: left;
+                 font-size: 30px;
+                 opacity: 0.8;
+                 margin-top: 30px;
+                 margin-left: 50%;
+             }
+             .citation1{
+                 border: 3px solid gainsboro;
+                 padding: 30px;
+                 border-radius: 20px;
+                 margin: 10px;
+                 box-shadow: 20px 15px 10px rgb(100, 100, 222);
+                 background: linear-gradient(to right, pink, white);
+             }
+             .text1{
+                 font-size: 40px;
+                 font-weight: bold;
+                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                 text-align: right;
+             }
+             .author1{
+                 text-align: left;
+                 font-size: 15px;
+                 opacity: 0.8;
+                 margin-top: 10px;
+                 margin-left: 70%;
+             }
+             .citation2{
+                 border: 3px solid black;
+                 padding: 20px;
+                 border-radius: 20px;
+                 margin: 20px;
+                 box-shadow: 20px 15px 10px red;
+                 background: linear-gradient(to right, rgb(229, 116, 116), rgb(0, 0, 0));
+             }
+             .text2{
+                 font-size: 40px;
+                 font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                 font-weight: inherit;
+                 text-align: right;
+                 color: aliceblue;
+             }
+             .author2{
+                 text-align: left;
+                 font-size: 30px;
+                 opacity: 0.8;
+                 margin-top: 10px;
+                 margin-left: 70%;
+                 color: cornsilk;
+             }
+             .citation3{
+                 border: 3px solid lemonchiffon;
+                 padding: 10px;
+                 border-radius: 15px;
+                 margin: 20px;
+                 box-shadow: 10px 10px 5px rgb(219, 25, 138);
+                 background: lightpink;
+             }
+             .text3{
+                 font-size: 30px;
+                 font-weight: bold;
+                 font-style: oblique;
+                 text-align: center;
+             }
+             .author3{
+                 text-align: left;
+                 font-size: 30px;
+                 opacity: 0.8;
+                 margin-top: 30px;
+                 margin-left: 50%;
+             }
+             .citation4{
+                 border: 4px solid black;
+                 padding: 10px;
+                 border-radius: 10px;
+                 margin: 10px;
+                 box-shadow: 5px 15px 1px rgb(174, 183, 180);
+                 background: rgb(192, 191, 175);
+             }
+             .text4{
+                 font-size: 40px;
+                 font-weight: normal;
+                 text-align: left;
+                 color: indigo;
+                 font-weight: bold;
+             }
+             .author4{
+                 text-align: left;
+                 font-size: 20px;
+                 opacity: 0.8;
+                 font-family: Verdana, Geneva, Tahoma, sans-serif;
+                 margin-top: 30px;
+                 margin-left: 50%;
+                 color: black;
+             }
+             .citation5{
+                 border: 2px solid rgb(236, 75, 251);
+                 padding: 15px;
+                 border-radius: 15px;
+                 margin: 15px;
+                 box-shadow: 15px 15px 15px rgb(62, 201, 155);
+                 background: rgb(250, 237, 56);
+             }
+             .text5{
+                 font-size: 40px;
+                 font-weight: normal;
+                 text-align: center;
+                 font-family: Arial, Helvetica, sans-serif;
+                 color: indigo;
+                 font-weight: normal;
+             }
+             .author5{
+                 text-align: right;
+                 font-size: 20px;
+                 opacity: 0.7;
+                 margin-top: 10px;
+                 margin-left: 70%;
+                 color: rgb(198, 41, 41);
+             }
+             .citation6{
+                 border: 4px solid rgb(4, 35, 191);
+                 padding: 15px;
+                 border-radius: 40px;
+                 margin: 15px;
+                 box-shadow: 5px 15px 5px rgb(0, 202, 81);
+                 background: rgb(224, 218, 217);
+             }
+             .text6{
+                 font-size: 40px;
+                 font-weight: normal;
+                 text-align: left;
+                 color: rgb(233, 26, 178);
+                 font-weight: bold;
+             }
+             .author6{
+                 text-align: center;
+                 font-size: 30px;
+                 opacity: 0.8;
+                 margin-top: 10px;
+                 color: rgb(2, 66, 23);
+             }
+             .citation7{
+                 border: 2px solid rgb(197, 11, 70);
+                 padding: 15px;
+                 border-radius: 40px;
+                 margin: 15px;
+                 box-shadow: 5px 5px 5px rgb(229, 26, 118);
+                 background: rgb(221, 171, 162);
+             }
+             .text7{
+                 font-size: 40px;
+                 font-weight: normal;
+                 text-align: center;
+                 font-style: italic;
+                 font-family: sans-serif;
+                 color: rgb(132, 19, 157);
+                 font-weight: inherit;
+             }
+             .author7{
+                 text-align: left;
+                 font-size: 20px;
+                 opacity: 1;
+                 margin-left: 85%;
+                 margin-top: 10px;
+                 color: rgb(50, 3, 70);
+             }
+             .citation8{
+                 border: 10px solid rgb(0, 110, 255);
+                 padding: 10px;
+                 border-radius: 10px;
+                 margin: 10px;
+                 box-shadow: 10px 10px 10px rgb(7, 3, 234);
+                 background: rgb(147, 174, 236);
+             }
+             .text8{
+                 font-size: 40px;
+                 font-weight: normal;
+                 font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+                 text-align: left;
+                 color: rgb(31, 0, 205);
+                 font-weight: inherit;
+             }
+             .author8{
+                 text-align: right;
+                 font-size: 30px;
+                 opacity: 1;
+                 font-style: italic;
+                 margin-right: 10%;
+                 margin-top: 10px;
+                 color: rgb(55, 7, 168);
+             }
+             .citation9{
+                 border: 5px solid rgb(244, 169, 9);
+                 padding: 5px;
+                 border-radius: 5px;
+                 margin: 5px;
+                 box-shadow: 5px 5px 5px rgb(148, 148, 195);
+                 background: rgb(200, 182, 79);
+             }
+             .text9{
+                 font-size: 40px;
+                 font-weight: normal;
+                 text-align: left;
+                 font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                 text-align: justify;
+                 color: rgb(0, 0, 0);
+                 font-weight: inherit;
+             }
+             .author9{
+                 text-align: right;
+                 font-size: 30px;
+                 opacity: 1;
+                 font-style: initial;
+                 margin-top: 10px;
+                 color: rgb(226, 12, 12);
+             }
+             .citation10{
+                 border: 10px solid rgb(10, 31, 105);
+                 padding: 7px;
+                 border-radius: 10px;
+                 margin: 8px;
+                 box-shadow: 1px 1px 1px rgb(78, 6, 202);
+                 background: rgb(20, 167, 220);
+             }
+             .text10{
+                 font-size: 30px;
+                 font-weight: bold;
+                 text-align: right;
+                 font-family:'Courier New', Courier, monospace;
+                 text-align: start;
+                 color: rgb(68, 7, 64);
+                 font-weight: inherit;
+             }
+             .author10{
+                 text-align: left;
+                 font-size: 15px;
+                 opacity: 0.6;
+                 font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                 margin-top: 7px;
+                 color: rgb(7, 0, 0);
+             }
+         </style>
+     </head>
+     
+     <body>
+         <header>
+             НГТУ, ФБ, Лабораторная работа 3
+             <hr>
+         </header>
+ 
+         <main>
+             <div class="citations">
+                 <div class="text">
+                     Стремитесь не к успеху, а к ценностям, которые он дает.
+                 </div>
+                 <div class="author">
+                     Альберт Эйнштейн
+                 </div>
+             </div>
+             <div class="citation1">
+                 <div class="text1">
+                    Никакое дело не покажется невыполнимым, если разбить его на части.
+                 </div>
+                 <div class="author1">
+                     Генри Форд
+                 </div>
+             </div>
+             <div class="citation2">
+                 <div class="text2">
+                    Никогда не отказывайся от того, что заставляет тебя улыбаться.
+                 </div>
+                 <div class="author2">
+                    Хит Леджер
+                 </div>
+             </div>
+             <div class="citation3">
+                 <div class="text3">
+                    Неважно, как медленно ты идешь, пока не останавливаешься.
+                 </div>
+                 <div class="author3">
+                     Конфуций
+                 </div>
+             </div>
+             <div class="citation4">
+                 <div class="text4">
+                    Если ты можешь мечтать, то можешь воплотить свои мечты в жизнь.
+                 </div>
+                 <div class="author4">
+                     Уолт Дисней
+                 </div>
+             </div>
+             <div class="citation5">
+                 <div class="text5">
+                    Делай все, что можешь, с тем, что у тебя есть, там, где ты есть.
+                 </div>
+                 <div class="author5">
+                    Теодор Рузвельт
+                 </div>
+             </div>
+             <div class="citation6">
+                 <div class="text6">
+                    Цель без плана — это просто мечта.
+                 </div>
+                 <div class="author6">
+                    Антуан де Сент-Экзюпери
+                 </div>
+             </div>
+             <div class="citation7">
+                 <div class="text7">
+                    Работать нужно не 12 часов, а головой!
+                 </div>
+                 <div class="author7">
+                    Стив Джобс
+                 </div>
+             </div>
+             <div class="citation8">
+                 <div class="text8">
+                    Лень плетется так медленно, что бедность быстро догоняет ее.
+                 </div>
+                 <div class="author8">
+                    Бенджамин Франклин
+                 </div>
+             </div>
+             <div class="citation9">
+                 <div class="text9">
+                    Успех — это умение двигаться от неудачи к неудаче, не теряя энтузиазма.
+                 </div>
+                 <div class="author9">
+                    Уинстон Черчилль
+                 </div>
+             </div>
+             <div class="citation10">
+                 <div class="text10">
+                    Никакой транспорт не будет попутным, если не знаешь, куда идти.
+                 </div>
+                 <div class="author10">
+                    Эдгар Алан По
+                 </div>
+             </div>
+         </main>
+ 
+         <footer>
+             <hr>
+             &copy; Дмитрий Игуменшев, ФБИ-33, 2 курс, 2025
+         </footer>
+     </body>
+ </html>
