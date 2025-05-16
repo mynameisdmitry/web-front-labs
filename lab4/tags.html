@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Игуменшев Дмитрий Евгеньевич. Лабораторная 4</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon.ico">
+    <style>
+        .tag-cloud {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .tag {
+            position: absolute;
+            padding: 5px 10px;
+            font-weight: bold;
+            color: white;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .tag:hover {
+            transform: scale(1.5) rotate(0deg);
+            text-shadow: 0 0 15px rgb(0, 0, 0);
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 4
+        <hr>
+    </header>
+
+    <main>
+        <div class="tag-cloud">
+            <span class="tag" style="top: 46%; left: 10%; font-size: 75px; color: rgb(7, 3, 22); font-family: Tahoma; transform: rotate(25deg);">Артем</span>
+            <span class="tag" style="top: 23%; left: 5%; font-size: 80px; color: rgb(17, 26, 108); font-family: Tahoma; transform: rotate(-15deg);">Матвей</span>
+            <span class="tag" style="top: 64%; left: 60%; font-size: 68px; color: rgb(219, 221, 84); font-family: Tahoma; transform: rotate(10deg);">Саша</span>
+            <span class="tag" style="top: 46%; left: 70%; font-size: 65px; color: rgb(88, 29, 9); font-family: Tahoma; transform: rotate(-10deg);">Кирилл</span>
+            <span class="tag" style="top: 15%; left: 30%; font-size: 54px; color: rgb(50, 110, 107); font-family: Georgia; transform: rotate(5deg);">Коля</span>
+            <span class="tag" style="top: 21%; left: 65%; font-size: 56px; color: rgb(187, 209, 187); font-family: Verdana; transform: rotate(-20deg);">Антон</span>
+            <span class="tag" style="top: 28%; left: 10%; font-size: 67px; color: rgb(84, 133, 69); font-family: 'Times New Roman'; transform: rotate(30deg);">Миша</span>
+            <span class="tag" style="top: 41%; left: 75%; font-size: 54px; color: rgb(36, 129, 72); font-family: Cambria; transform: rotate(-25deg);">Алена</span>
+            <span class="tag" style="top: 30%; left: 65%; font-size: 40px; color: rgb(3, 102, 89); font-family: Comic Sans MS; transform: rotate(15deg);">Настя</span>
+            <span class="tag" style="top: 22%; left: 80%; font-size: 49px; color: rgb(33, 15, 224); font-family: Geneva; transform: rotate(0deg);">Соня</span>
+            <span class="tag" style="top: 26%; left: 5%; font-size: 51px; color: rgb(224, 214, 216); font-family: Trebuchet MS; transform: rotate(-5deg);">Женя</span>
+            <span class="tag" style="top: 39%; left: 50%; font-size: 42px; color: rgb(86, 0, 147); font-family: Arial; transform: rotate(10deg);">Тарас</span>
+            <span class="tag" style="top: 11%; left: 40%; font-size: 53px; color: rgb(105, 165, 49); font-family: Cambria; transform: rotate(-10deg); font-style: italic;">Дима</span>
+            <span class="tag" style="top: 12%; left: 10%; font-size: 56px; color: rgb(226, 124, 192); font-family: 'Courier New'; transform: rotate(15deg);">Леша</span>
+            <span class="tag" style="top: 16%; left: 75%; font-size: 44px; color: rgb(99, 236, 161); font-family: Georgia; transform: rotate(-35deg);">Денис</span>
+            <span class="tag" style="top: 27%; left: 30%; font-size: 58px; color: rgb(58, 42, 31); font-family: Tahoma; transform: rotate(20deg);">Максим</span>
+            <span class="tag" style="top: 35%; left: 45%; font-size: 72px; color: rgb(78, 192, 112); font-family: Verdana; transform: rotate(-30deg);">Слава</span>
+        </div>
+
+        <script>
+            const names = [
+                "Артем", "Матвей", "Саша", "Кирилл", "Коля", "Антон", "Миша",
+                "Алена", "Настя", "Соня", "Женя", "Тарас", "Дима",
+                "Леша", "Денис", "Максим", "Слава"
+            ];
+        
+            const fonts = ['Arial', 'Verdana', 'Georgia', 'Courier New', 'Tahoma', 'Impact', 'Times New Roman'];
+            const colors = ['#ff007f', '#7f00ff', '#00bfff', '#00ff7f', '#ff4500', '#ffd700', '#8a2be2'];
+        
+            const tagCloud = document.getElementById("tagCloud");
+        
+            names.forEach(name => {
+                const tag = document.createElement("div");
+                tag.classList.add("tag");
+                tag.textContent = name;
+        
+                const size = Math.floor(Math.random() * 24 + 16);
+                const top = Math.random() * 85;
+                const left = Math.random() * 85;
+                const rotate = Math.floor(Math.random() * 60 - 30);
+        
+                tag.style.top = `${top}%`;
+                tag.style.left = `${left}%`;
+                tag.style.fontSize = `${size}px`;
+                tag.style.color = colors[Math.floor(Math.random() * colors.length)];
+                tag.style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
+                tag.style.transform = `rotate(${rotate}deg)`;
+        
+                tagCloud.appendChild(tag);
+            });
+        </script>
+    </main>
+
+    <footer>
+        <hr>
+        &copy; Дима Игуменшев, ФБИ-33, 2 курс, 2025
+    </footer>
+</body>
+</html>
