@@ -13,39 +13,39 @@
     </head>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const yabloko = document.getElementById('yabloko');
-            const grusha = document.getElementById('grusha');
-            const apelsinInput = document.getElementById('apelsin');
-            const dyna = document.getElementById('dyna');
-            const arbuz = document.getElementById('arbuz');
+            const yablokoInput = document.getElementById('yablokoInput');
+            const grushaInput = document.getElementById('grushaInput');
+            const apelsinInput = document.getElementById('apelsinInput');
+            const dynaInput = document.getElementById('dynaInput');
+            const arbuzInput = document.getElementById('arbuzInput');
             const calculateButton = document.getElementById('calculate');
             const clearButton = document.getElementById('clear');
             const totalPriceDiv = document.getElementById('total-price');
         
             calculateButton.addEventListener('click', function() {
-                const yabloko = parseInt(yablokoInput.value) || 0;  
+                const yabloko = parseInt(yablokoInput.value) || 0;
                 const grusha = parseInt(grushaInput.value) || 0;
                 const apelsin = parseInt(apelsinInput.value) || 0;
                 const dyna = parseInt(dynaInput.value) || 0;
                 const arbuz = parseInt(arbuzInput.value) || 0;
-        
-                const yablokoPrice = yabloko * 5500;
-                const grushaPrice = grusha * 7700;
-                const apelsinPrice = apelsin * 1700;
-                const dynaPrice = dyna * 1800;
-                const arbuzPrice = arbuz * 2980;
-        
+
+                const yablokoPrice = yabloko * 100;
+                const grushaPrice = grusha * 80;
+                const apelsinPrice = apelsin * 150;
+                const dynaPrice = dyna * 300;
+                const arbuzPrice = arbuz * 350;
+
                 const totalPrice = yablokoPrice + grushaPrice + apelsinPrice + dynaPrice + arbuzPrice;
-        
+
                 totalPriceDiv.textContent = 'Общая цена: ' + totalPrice + ' р.';
             });
         
             clearButton.addEventListener('click', function() {
-                budaInput.value = 0;
-                kreedInput.value = 0;
-                macanInput.value = 0;
-                heronInput.value = 0;
-                nkeeeiInput.value = 0;
+                yablokoInput.value = '';
+                grushaInput.value = '';
+                apelsinInput.value = '';
+                dynaInput.value = '';
+                arbuzInput.value = '';
                 totalPriceDiv.textContent = 'Общая цена: 0 р.';
             });
         });
@@ -100,43 +100,42 @@
             <hr>
         </header>
  
-        <main>
-            <div class="cart">
-                <div class="cart-item">
-                    <label for="buda">Яблоки (100р/шт):</label>
-                    <input type="number" id="yabloko" name="yabloko" min="0" placeholder="Сколько яблок надо?">
-                </div>
-    
-                <div class="cart-item">
-                    <label for="grusha">Груши (80р/шт):</label>
-                    <input type="number" id="grusha" name="grusha" min="0" placeholder="Введите количество груш">
-                </div>
-    
-                <div class="cart-item">
-                    <label for="apelsin">Апельсины (150р/шт):</label>
-                    <input type="number" id="apelsin" name="apelsin" min="0" placeholder="Сколько апельсинов?">
-                </div>
-    
-                <div class="cart-item">
-                    <label for="dyna">Дыни (300р/шт):</label>
-                    <input type="number" id="dyna" name="dyna" min="0" placeholder="Количество дынь">
-                </div>
-    
-                <div class="cart-item">
-                    <label for="arbuz">Арбузы (350р/шт):</label>
-                    <input type="number" id="arbuz" name="arbuz" min="0" placeholder="Сколько арбузов?">
-                </div>
-    
-                <button id="calculate">Рассчитать</button>
-                <button id="clear">Очистить</button>
-    
-                <div id="total-price">Общая цена: 0 р.</div>
+    <main>
+        <div class="cart">
+            <div class="cart-item">
+                <label for="yablokoInput">Яблоки (100р/шт):</label>
+                <input type="number" id="yablokoInput" name="yabloko" min="0" placeholder="Сколько яблок надо?">
             </div>
-        </main>
+    
+            <div class="cart-item">
+                <label for="grushaInput">Груши (80р/шт):</label>
+                <input type="number" id="grushaInput" name="grusha" min="0" placeholder="Введите количество груш">
+            </div>
+    
+            <div class="cart-item">
+                <label for="apelsinInput">Апельсины (150р/шт):</label>
+                <input type="number" id="apelsinInput" name="apelsin" min="0" placeholder="Сколько апельсинов?">
+            </div>
+    
+            <div class="cart-item">
+                <label for="dynaInput">Дыни (300р/шт):</label>
+                <input type="number" id="dynaInput" name="dyna" min="0" placeholder="Количество дынь">
+            </div>
+    
+            <div class="cart-item">
+                <label for="arbuzInput">Арбузы (350р/шт):</label>
+                <input type="number" id="arbuzInput" name="arbuz" min="0" placeholder="Сколько арбузов?">
+            </div>
+    
+            <button id="calculate">Рассчитать</button>
+            <button id="clear">Очистить</button>
+    
+            <div id="total-price">Общая цена: 0 р.</div>
+        </div>
+    </main>
  
-        <footer>
-            <hr>
-            &copy; Дима Игуменшев, ФБИ-33, 2 курс, 2025
-        </footer>
-    </body>
-</html>
+    <footer>
+        <hr>
+        &copy; Дима Игуменшев, ФБИ-33, 2 курс, 2025
+    </footer>
+</body>
