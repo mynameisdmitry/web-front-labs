@@ -131,7 +131,18 @@
 
                 let result = Math.pow(a, b);
                 alert('Число ' + a + ' в степени ' + b + ' равно: ' + result);
-                }
+            }
+
+            function chageOutput(buttonNum, backColor, textColor, borderType, borderRadius, borderWidth, borderColor) {
+                let output = document.getElementById('output');
+                output.innerHTML = 'Нажата кнопка ' + buttonNum;
+                output.style.backgroundColor = backColor;
+                output.style.color = textColor;
+                output.style.borderStyle = borderType;
+                output.style.borderRadius = borderRadius;
+                output.style.borderWidth = borderWidth;
+                output.style.borderColor = borderColor;
+            }  
         </script>
         <style>
             .message {
@@ -152,6 +163,11 @@
             footer {
                 cursor: pointer;
             }
+            #output {
+                border: 1px solid;
+                width: 300px;
+                height: 40px;
+            }
         </style>
     </head>
      
@@ -170,6 +186,15 @@
             <div class="message" onclick="showDiv()">Найти отношение чисел</div>
             <div class="message" onclick="showPower()">Найти степень чисел</div>
             <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
+
+            <div>
+                <input type="button" value="Кнопка 1" onclick="chageOutput(1, 'red', 'yellow', 'dottedsolid', '4px', '4px', 'white')">
+                <input type="button" value="Кнопка 2" onclick="chageOutput(2, 'black', 'lime', 'solid', '4px', '6px', 'purple')">
+                <input type="button" value="Кнопка 3" onclick="chageOutput(3, 'green', 'beige', 'double', '5px', '3px', 'black')">
+                <input type="button" value="Кнопка 4" onclick="chageOutput(4, 'yellow', 'black', 'dashed', '5px', '8px', 'blue')">
+            </div>
+
+            <div id="output"></div>
         </main>
  
         <footer class="footer" ondblclick="showSentence()">
