@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Игуменшев Дмитрий Евгеньевич. Лабораторная 6</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
+    <link rel="icon" href="favicon-32x32.png" type="image/x-icon">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: sans-serif;
+        }
+
+        header {
+            top: 0;
+        }
+
+        main {
+            height: calc(100vh - 110px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        footer {
+            bottom: 0;
+        }
+
+        #chart {
+            flex-grow: 1;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            flex-wrap: nowrap;
+            margin: 0 auto;
+            padding: 20px 10px 10px 10px;
+            width: 95%;
+            max-width: 100%;
+            height: 500px;
+            border: 2px solid rgb(0, 0, 0);
+            background-color: rgb(233, 222, 222);
+        }
+
+        .bar {
+            width: calc(100% / 32);
+            min-width: 15px;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .min-temp {
+            background-color: rgb(62, 70, 114);
+            color: rgb(54, 181, 185);
+            width: 100%;
+            font-size: 15px;            
+        }
+
+        .max-temp {
+            background-color: rgb(151, 207, 226);
+            width: 100%;
+            font-size: 15px;
+        }
+
+        .highlight {
+            outline: 2px solid rgb(110, 89, 50);
+        }
+
+        .day-label {
+            margin-top: 3px;
+            font-size: 12px;
+            color: #000000;
+        }
+
+        #controls {
+            margin-top: 10px;
+            text-align: center;
+            background-color: #cbe5f4;
+            padding: 10px;
+            border: 1px solid #89c5e0;
+            font-weight: bold;
+        }
+
+        #info {
+            margin-top: 10px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .bar {
+                width: calc(100% / 35);
+            }
+
+            #controls {
+                font-size: 14px;
+            }
+        }
+
+        .orange-min {
+            background-color: rgb(143, 68, 143) !important;
+        }
+
+        .orange-max {
+            background-color: #38290d !important; 
+        }
+    </style>
+</head>
+<body>
+<header>
+    НГТУ, ФБ, Лабораторная работа 6
+    <hr>
+</header>
+
+<main>
+    <div id="chart"></div>
+
+    <div id="controls">
+        <label>Номер месяца:
+            <input type="number" id="monthInput" min="1" max="12" value="4">
+        </label>
+        <button onclick="generateChart()">поиск</button>
+
+        <br><br>
+        <label>Номер дня:
+            <input type="number" id="dayInput" min="1" max="30">
+        </label>
+        <button onclick="highlightDay()">показать</button>
+
+        <div id="info"></div>
+    </div>
+</main>
+
+<footer>
+    <hr>
+    &copy; Дима Игуменшев, ФБИ-33, 2 курс, 2025
+</footer>
+
+<script>
+    let minTemps = [];
+    let maxTemps = [];
+    let bars = [];
+    let selectedIndex = null;
+
+    function generateChart() {
+        const chart = document.getElementById('chart');
+        const info = document.getElementById('info');
+        const month = document.getElementById('monthInput').value;
+        chart.innerHTML = "";
+        minTemps = [];
+        maxTemps = [];
+        bars = [];
+        selectedIndex = null;
+
+        let globalMin = Infinity;
+        let globalMax = -Infinity;
+
+        for (let i = 0; i < 30; i++) {
+            const min = Math.floor(Math.random() * 10) + 5;
+            const max = min + Math.floor(Math.random() * 15) + 5;
+            minTemps.push(min);
+            maxTemps.push(max);
+
+            if (min < globalMin) globalMin = min;
+            if (max > globalMax) globalMax = max;
+
+            const bar = document.createElement('div');
+            bar.className = 'bar';
+            const minHeight = min;
+            const maxHeight = max - min;
+
+            bar.innerHTML = `
+                <div class="day-label">${i + 1}</div>
+                <div class="max-temp" style="height:${maxHeight * 10}px">${max}°C</div>
+                <div class="min-temp" style="height:${minHeight * 10}px">${min}°C</div>
+            `;
+            chart.appendChild(bar);
+            bars.push(bar);
+        }
+
+        info.innerHTML = `
+            Номер месяца: <strong>${month}</strong><br>
+            Минимальная температура: <span style="color: blue;">${globalMin}°C</span><br>
+            Максимальная температура: <span style="color: red;">${globalMax}°C</span>
+        `;
+    }
+
+    function highlightDay() {
+        const input = document.getElementById('dayInput').value;
+        const index = parseInt(input) - 1;
+
+        if (index >= 0 && index < 30) {
+            if (selectedIndex !== null) {
+                bars[selectedIndex].querySelector('.min-temp').classList.remove('orange-min');
+                bars[selectedIndex].querySelector('.max-temp').classList.remove('orange-max');
+            }
+
+            bars[index].querySelector('.min-temp').classList.add('orange-min');
+            bars[index].querySelector('.max-temp').classList.add('orange-max');
+            selectedIndex = index;
+
+            const min = minTemps[index];
+            const max = maxTemps[index];
+
+            document.getElementById('info').innerHTML = `
+                День: <strong>${index + 1}</strong><br>
+                Минимальная температура: <span style="color: blue;">${min}°C</span><br>
+                Максимальная температура: <span style="color: red;">${max}°C</span>
+            `;
+        } else {
+            alert("Введите номер дня от 1 до 30");
+        }
+    }
+
+    window.onload = generateChart;
+</script>
+</body>
+</html>
