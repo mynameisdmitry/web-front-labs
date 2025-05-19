@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Игуменшев Дмитрий Евгеньевич. Лабораторная 6</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
+    <link rel="icon" href="favicon-32x32.png" type="image/x-icon">
+    <script src="books.js"></script>
+    <style>
+        .book-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .bestseller {
+            background-color: rgb(17, 58, 17); 
+            border: 2px solid #a3a3a3; 
+        }
+
+        .unavailable {
+            color: #ffffff; 
+        }
+    </style>
+    <script>
+        function showBooks() {
+            const bookList = document.getElementById('bookList');
+
+            let html = ''; 
+
+            for(let i = 0; i < books.length; i++) {
+                const book = books[i];
+                const isAvailable = book.available;
+                const isBestseller = book.bestseller;
+
+                let bookClass = 'book-item'; 
+                if (isBestseller) {
+                    bookClass += ' bestseller';
+                }
+                if (!isAvailable) {
+                    bookClass += ' unavailable';
+                }
+
+                html += `
+                    <div class="${bookClass}">
+                        <b>${book.author}</b>
+                        <i>${book.name}</i>
+                        &mdash; ${book.publicationYear}
+                        - Цена: ${book.price} руб.
+                        ${isAvailable ? '' : '<span class="unavailable-text"> (Нет в наличии)</span>'}
+                    </div>
+                `;
+            }
+            bookList.innerHTML = html;  
+        }
+    </script>
+</head>
+<body onload="showBooks()">
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+        <hr>
+    </header>
+
+    <main>
+        <h1>Список книг</h1>
+        <div id="bookList">
+        </div>
+
+    </main>
+
+    <footer>
+        <hr>
+        &copy; Дима Игуменшев, ФБИ-33, 2 курс, 2025
+    </footer>
+</body>
+</html>
