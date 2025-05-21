@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Игуменшев Дмитрий Евгеньевич. Лабораторная 7</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .chart-container {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #c4c6c9;
+            border-radius: 5px;
+            border-left: 4px solid #37923a;
+        }
+
+        .chart-title {
+            margin-top: 0;
+            color: #1d1d1d;
+            border-bottom: 1px solid #9c9b9b;
+            padding-bottom: 10px;
+        }
+
+        .current-values {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #d1dbd1;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .value-item {
+            text-align: center;
+        }
+
+        .value-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #384f66;
+        }
+
+        .value-label {
+            font-size: 14px;
+            color: #3b3b3b;
+        }
+
+        .chart-date {
+            text-align: center;
+            margin-top: 10px;
+            font-style: italic;
+            color: #3f3f3f;
+        }
+
+        .footer-spacer {
+            height: 35px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function getWeatherData() {
+            const forecastUrl = 'https://api.open-meteo.com/v1/forecast?latitude=55.04&longitude=82.93&hourly=temperature_2m,pressure_msl&forecast_days=1';
+            const historicalUrl = 'https://api.open-meteo.com/v1/forecast?latitude=55.04&longitude=82.93&hourly=temperature_2m,pressure_msl&past_days=1';
+            const currentUrl = 'https://api.open-meteo.com/v1/forecast?latitude=55.04&longitude=82.93&current=temperature_2m,pressure_msl';
+
+            Promise.all([
+                fetch(forecastUrl).then(res => res.json()),
+                fetch(historicalUrl).then(res => res.json()),
+                fetch(currentUrl).then(res => res.json())
+            ])
+            .then(([forecastData, historicalData, currentData]) => {
+                displayWeatherData(forecastData, historicalData, currentData);
+            })
+            .catch(error => showError(error));
+        }
+
+        function displayWeatherData(forecastData, historicalData, currentData) {
+            const container = document.querySelector('.weather-container');
+            container.innerHTML = '';
+
+            const currentTemp = currentData.current.temperature_2m;
+            const currentPressure = currentData.current.pressure_msl;
+
+            const today = new Date();
+            const formattedDate = today.toLocaleDateString('ru-RU', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+
+            const currentValues = document.createElement('div');
+            currentValues.className = 'current-values';
+            currentValues.innerHTML = `
+                <div class="value-item">
+                    <div class="value-number">${currentTemp} °C</div>
+                    <div class="value-label">Текущая температура</div>
+                </div>
+                <div class="value-item">
+                    <div class="value-number">${currentPressure} гПа</div>
+                    <div class="value-label">Текущее давление</div>
+                </div>
+            `;
+        container.appendChild(currentValues);
+
+            createCombinedChart(
+                container,
+                'Температура: прогноз и фактическая (°C)',
+                forecastData.hourly.temperature_2m,
+                historicalData.hourly.temperature_2m,
+                forecastData.hourly.time,
+                'temperature-chart',
+                formattedDate,
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(75, 192, 192, 0.5)'
+            );
+
+            createPressureChart(
+                container,
+                'Атмосферное давление (гПа)',
+                forecastData.hourly.pressure_msl,
+                historicalData.hourly.pressure_msl,
+                forecastData.hourly.time,
+                'pressure-chart',
+                formattedDate
+            );
+
+            const spacer = document.createElement('div');
+            spacer.className = 'footer-spacer';
+            container.appendChild(spacer);
+        }
+
+        function createCombinedChart(container, title, forecastValues, historicalValues, times, id, date, forecastColor, actualColor) {
+            const chartContainer = document.createElement('div');
+            chartContainer.className = 'chart-container';
+
+            const chartTitle = document.createElement('h3');
+            chartTitle.className = 'chart-title';
+            chartTitle.textContent = title;
+            chartContainer.appendChild(chartTitle);
+
+            const canvas = document.createElement('canvas');
+            canvas.id = id;
+            chartContainer.appendChild(canvas);
+
+            const dateElement = document.createElement('div');
+            dateElement.className = 'chart-date';
+            dateElement.textContent = `Данные за ${date}`;
+            chartContainer.appendChild(dateElement);
+
+            container.appendChild(chartContainer);
+
+            const labels = times.map(time => {
+                const date = new Date(time);
+                return date.toLocaleTimeString('ru-RU', {hour: '2-digit'});
+            });
+
+            const now = new Date();
+            const currentHour = now.getHours();
+
+            const ctx = document.getElementById(id).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Прогноз температуры',
+                            data: forecastValues,
+                            backgroundColor: forecastColor,
+                            borderColor: forecastColor.replace('0.5', '1'),
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Фактическая температура',
+                            data: historicalValues.map((val, i) => i <= currentHour ? val : null),
+                            backgroundColor: actualColor,
+                            borderColor: actualColor.replace('0.5', '1'),
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: 'Температура (°C)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Время'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.raw} °C`;
+                                }
+                            }
+                        }
+                    }
+                    }
+            });
+        }
+
+        function createPressureChart(container, title, forecastPressure, historicalPressure, times, id, date) {
+            const chartContainer = document.createElement('div');
+            chartContainer.className = 'chart-container';
+
+            const chartTitle = document.createElement('h3');
+            chartTitle.className = 'chart-title';
+            chartTitle.textContent = title;
+            chartContainer.appendChild(chartTitle);
+
+            const canvas = document.createElement('canvas');
+            canvas.id = id;
+            chartContainer.appendChild(canvas);
+
+            const dateElement = document.createElement('div');
+            dateElement.className = 'chart-date';
+            dateElement.textContent = `Данные за ${date}`;
+            chartContainer.appendChild(dateElement);
+
+            container.appendChild(chartContainer);
+
+            const labels = times.map(time => {
+                const date = new Date(time);
+                return date.toLocaleTimeString('ru-RU', {hour: '2-digit'});
+            });
+
+            const now = new Date();
+            const currentHour = now.getHours();
+
+            const ctx = document.getElementById(id).getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Прогноз давления',
+                            data: forecastPressure,
+                            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                            borderColor: 'rgba(255, 159, 64, 1)',
+                            borderWidth: 2,
+                            pointBackgroundColor: 'rgba(255, 159, 64, 1)',
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Фактическое давление',
+                            data: historicalPressure.map((val, i) => i <= currentHour ? val : null),
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 2,
+                            pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: 'Давление (гПа)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Время'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.raw} гПа`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function showError(error) {
+            const container = document.querySelector('.weather-container');
+            container.innerHTML = `
+                <div class="chart-container" style="color: #e74c3c;">
+                    <h3 class="chart-title">Ошибка</h3>
+                    <div>Не удалось получить данные о погоде. Повторите попытку.</div>
+                    <div>${error.message}</div>
+                </div>
+            `;
+
+            const spacer = document.createElement('div');
+            spacer.className = 'footer-spacer';
+            container.appendChild(spacer);
+        }
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+        <hr>
+    </header>
+
+    <main>
+        <button onclick="getWeatherData()">Получить данные о погоде</button>
+        <div class="weather-container"></div>
+    </main>
+
+    <footer>
+        <hr>
+        &copy; Дима Игуменшев, ФБИ-33, 2 курс, 2025
+    </footer>
+</body>
+</html>
