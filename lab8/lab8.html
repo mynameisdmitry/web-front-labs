@@ -11,6 +11,24 @@
     <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
     <link rel="icon" href="favicon-32x32.png" type="image/x-icon">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        #app {
+            color: black;
+        }
+        
+        button {
+            margin: 5px;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -18,25 +36,32 @@
         <hr>
     </header>
 
-    <main>
-
-        <div id="app">
-            <h1 :title="messageRus">{{ message }}</h1>
-            <p>Счетчик: {{ counter }}</p>
-            <button @click="incCounter" v-if="counter < 10">++</button>
-            <button @click="decCounter" v-if="counter > 0">--</button>
+<main>
+    <div id="app">
+        <h1 :title="messageRus">{{ message }}</h1>
+        <p>Счетчик: {{ counter }}</p>
+        <button @click="incCounter" v-if="counter < 10">++</button>
+        <button @click="decCounter" v-if="counter > 0">--</button>
         <hr>
 
         <h2>Пользователь:</h2>
         <div>Имя: {{ user.name }}</div>
         <div>Возраст: {{ user.age }}</div>
         <div>Телефон: {{ user.tel }}</div>  
-               
-    </main>
+        <hr>
 
-    <footer>
+        <h2>Цветы</h2>
+        <ul>
+            <li v-for="flower in flowers" :key="flower">
+                {{ flower }} 
+            </li>
+        </ul>
+    </div>
+</main>
 
-        <script>
+
+<footer>
+    <script>
         Vue.createApp({
             data() {
                 return {
@@ -48,6 +73,7 @@
                         age: '20',
                         tel: '211-21-35',
                     },
+                    flowers: ['роза', 'тюльпан', 'маргаритка', 'георгин', 'одуванчик'],
                 }
             },
             methods: {
@@ -58,9 +84,9 @@
                     this.counter--;
                 },
             }
-        }).mount('#app');
+        }).mount("#app");
     </script>
-
+    
         <hr>
         &copy; Дима Игуменшев, ФБИ-33, 2 курс, 2025
     </footer>
